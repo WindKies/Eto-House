@@ -1,5 +1,6 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
 import {AiOutlineMenu} from 'react-icons/ai'
 import Avatar from '../Avatar';
 import {useCallback, useState} from 'react';
@@ -8,6 +9,7 @@ import useRegisterModal from '@/app/hooks/useRegisterModal';
 import useLoginModal from '@/app/hooks/useLoginModal';
 import { signOut } from 'next-auth/react';
 import { SafeUser } from '@/app/types';
+import useRentModal from '@/app/hooks/UseRentModal';
 
 interface UserMenuProps {
     currentUser?: SafeUser | null;
@@ -16,8 +18,10 @@ interface UserMenuProps {
 const UserMenu: React.FC<UserMenuProps> = ({
     currentUser
 }) => {
+    const router = useRouter();
     const registerModal = useRegisterModal();
     const loginModal = useLoginModal();
+    const rentModal = useRentModal();
     const [isOpen, setIsOpen] = useState(false);
 
     const toggleOpen = useCallback(() => {
@@ -25,12 +29,18 @@ const UserMenu: React.FC<UserMenuProps> = ({
 
     }, []);
 
+    const onRent = useCallback(() => {
+        if (!currentUser){
+            return loginModal.onOpen();
+        }
+        rentModal.onOpen();
+    }, [currentUser, loginModal, rentModal]);
 
     return (
         <div className="relative">
             <div className=" flex flex-row items-center gap-3">
                 <div
-                    onClick={()=>{}}
+                    onClick={onRent}
                     className="
                         hidden
                         md:block
@@ -44,7 +54,7 @@ const UserMenu: React.FC<UserMenuProps> = ({
                         cursor-pointer
                     "
                 >
-                    Airbnb your home
+                    Cho thuê nhà nghỉ
                 </div>
 
                 <div
@@ -66,7 +76,7 @@ const UserMenu: React.FC<UserMenuProps> = ({
                 >
                 <AiOutlineMenu/>
                 <div className='hidden md:block'>
-                    <Avatar/>
+                    <Avatar src={currentUser?.image}/>
                 </div>
                 </div>
             </div>
@@ -89,42 +99,42 @@ const UserMenu: React.FC<UserMenuProps> = ({
                         {currentUser ? (    
                         <>
                             <MenuItem
-                                onClick={() => {}}
-                                label='My trips'
+                                onClick={() => router.push("/trips")}
+                                label='Chuyến đi'
                             />
 
                             <MenuItem
-                                onClick={() => {}}
-                                label='My favorites'
+                                onClick={() => router.push("/favorites")}
+                                label='Ưa thích'
                             />
                              <MenuItem
-                                onClick={() => {}}
-                                label='My reservations'
+                                onClick={() => router.push("/reservations")}
+                                label='Đặt chỗ'
                             />
                              <MenuItem
-                                onClick={() => {}}
-                                label='My properties'
+                                onClick={() => router.push("/properties")}
+                                label='Thông tin'
                             />
                              <MenuItem
-                                onClick={() => {}}
-                                label='Airbnb my home'
+                                onClick={rentModal.onOpen}
+                                label='Cho thuê nhà nghỉ'
                             />
                             <hr/>
                             <MenuItem
                                 onClick={() => signOut()}
-                                label='Logout'
+                                label='Đăng xuất'
                             />
                         </>
                         ) : (
                         <>
                             <MenuItem
                                 onClick={loginModal.onOpen}
-                                label='Login'
+                                label='Đăng nhập'
                             />
 
                             <MenuItem
                                 onClick={registerModal.onOpen}
-                                label='Sign up'
+                                label='Đăng ký'
                             />
                         </>
                         )}

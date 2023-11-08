@@ -23,8 +23,10 @@ import { useRouter } from 'next/navigation';
 
 const LoginModal = () => {
     const router = useRouter();
+
     const registerModal = useRegisterModal();
     const loginModal = useLoginModal();
+
     const [isLoading, setIsLoading] = useState(false);
 
     const {
@@ -35,7 +37,7 @@ const LoginModal = () => {
         }
     } = useForm<FieldValues>({
         defaultValues: {
-            name: '',
+            email: '',
             password: ''
         }
     });
@@ -51,7 +53,7 @@ const LoginModal = () => {
         setIsLoading(false);
 
         if(callback?.ok){
-          toast.success('Logged in!!')
+          toast.success('Đăng nhập thành công!')
           router.refresh();
           loginModal.onClose();
         }
@@ -62,11 +64,16 @@ const LoginModal = () => {
       })
     }
 
+    const toggle = useCallback(()=>{
+      loginModal.onClose();
+      registerModal.onOpen();
+    }, [loginModal, registerModal]);
+
     const bodyContent = (
         <div className=" flex flex-col gap-4">
             <Heading
-                title="Welcome back"
-                subtitle="Login to your account!!"
+                title="Chào mừng bạn quay lại"
+                subtitle="Đăng nhập tài khoản của bạn!"
             />
             <Input
               id="email"
@@ -95,16 +102,16 @@ const LoginModal = () => {
           <hr/>
           <Button
             outline
-            label="Continue with Google"
+            label="Đăng nhập với Google"
             icon={FcGoogle}
-            onClick={() => {}}
+            onClick={() => signIn('google')}
           />
 
           <Button
             outline
-            label="Continue with Github"
+            label="Đăng nhập với Github"
             icon={AiFillGithub}
-            onClick={() => {}}
+            onClick={() => signIn('github')}
           />
           
           <div
@@ -116,12 +123,12 @@ const LoginModal = () => {
             '>
             <div className="justify-center text-center flex flex-row items-center gap-2">
               <div>
-                Already have an account?
+                Lần đần tiên sử dụng EtoHome?
               </div>
               <div
-                onClick={registerModal.onClose} 
+                onClick={toggle} 
                 className="text-neutral-800 cursor-pointer hover:underline">
-                Log in!!
+                Tạo tài khoản
               </div>
             </div>
           </div>
@@ -132,7 +139,7 @@ const LoginModal = () => {
         <Modal
            disabled={isLoading}
            isOpen={loginModal.isOpen}
-           title="Login"
+           title="Đăng nhập"
            actionLabel="Continue"
            onClose={loginModal.onClose}
            onSubmit={handleSubmit(onSubmit)}
