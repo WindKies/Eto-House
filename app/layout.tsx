@@ -10,11 +10,12 @@ import LoginModal from './components/modals/LoginModal';
 import getCurrentUser from './actions/getCurrentUser';
 import RentModal from './components/modals/RentModal';
 import SearchModal from './components/modals/SearchModal';
+import Footer from './components/footer/Footer';
 
 
 export const metadata: Metadata = {
-  title: 'Airbnb',
-  description: 'Airbnb project',
+  title: 'Eto Home',
+  description: 'EtoHome',
 }
 
 const font = Nunito({
@@ -37,10 +38,15 @@ export default async function RootLayout({
           <LoginModal/>
           <RegisterModal/>
           <Navbar currentUser={currentUser} />
+          
         </ClientOnly>
         <div className='pb-20 pt-28'>
           {children}
         </div>
+        <ClientOnly>
+          <Footer/>
+        </ClientOnly>
+        
       </body>
     </html>
   )

@@ -44,7 +44,7 @@ const RegisterModal = () => {
 
         axios.post('/api/register', data)
             .then(() => {
-                toast.success('Success!');
+                toast.success('Thành công!');
                 registerModal.onClose();
                 loginModal.onOpen();
             })
@@ -61,7 +61,7 @@ const RegisterModal = () => {
     }, [loginModal, registerModal]);
 
     const bodyContent = (
-        <div className=" flex flex-col">
+        <div className=" flex flex-col gap-4">
             <Heading
                 title="Chào mừng đến với EtoHome"
                 subtitle="Tạo tài khoản"
@@ -97,7 +97,7 @@ const RegisterModal = () => {
     )
 
     const footerContent = (
-        <div className=" flex flex-col gap-4 s ">
+        <div className=" flex flex-col gap-4 ">
           <hr/>
           <Button
             outline

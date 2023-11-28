@@ -43,7 +43,7 @@ const ReservationsClient: React.FC<ReservationsClientProps> = ({
     <Container>
       <Heading
         title="Đặt chỗ"
-        subtitle="Đặt chỗ ở của bạn"
+        subtitle="Đặt chỗ tại nơi ở của bạn"
       />
       <div 
         className="

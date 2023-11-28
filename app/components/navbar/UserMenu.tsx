@@ -112,6 +112,10 @@ const UserMenu: React.FC<UserMenuProps> = ({
                                 label='Đặt chỗ'
                             />
                              <MenuItem
+                                onClick={() => router.push("/profiles")}
+                                label='Tài khoản'
+                            />
+                             <MenuItem
                                 onClick={() => router.push("/properties")}
                                 label='Thông tin'
                             />
@@ -124,6 +128,8 @@ const UserMenu: React.FC<UserMenuProps> = ({
                                 onClick={() => signOut()}
                                 label='Đăng xuất'
                             />
+
+                            
                         </>
                         ) : (
                         <>

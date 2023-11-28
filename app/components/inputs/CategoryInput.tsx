@@ -41,4 +41,3 @@ const CategoryInput: React.FC<CategoryInputProps> = ({
 
 export default CategoryInput;
 
-'3:31:48 / 8:40:33';

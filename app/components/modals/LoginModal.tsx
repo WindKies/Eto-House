@@ -140,7 +140,7 @@ const LoginModal = () => {
            disabled={isLoading}
            isOpen={loginModal.isOpen}
            title="Đăng nhập"
-           actionLabel="Continue"
+           actionLabel="Tiếp tục"
            onClose={loginModal.onClose}
            onSubmit={handleSubmit(onSubmit)}
            body={bodyContent}

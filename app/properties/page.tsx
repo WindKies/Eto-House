@@ -22,7 +22,7 @@ const PropertiesPage = async () => {
       <ClientOnly>
         <EmptyState
           title="Không tìm thấy thông tin nào"
-          subtitle="Có vẻ như bạn không có thông tin nào."
+          subtitle="Có vẻ như bạn chưa cho thuê."
         />
       </ClientOnly>
     );

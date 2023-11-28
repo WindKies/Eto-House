@@ -129,6 +129,7 @@ const Modal: React.FC<ModalProps> = ({
 
                     <div 
                         className="
+        
                             flex
                             items-center
                             p-6
@@ -139,7 +140,7 @@ const Modal: React.FC<ModalProps> = ({
                         "
                     >
                         <button 
-                            onClick={handleClose}
+                            
                             className="
                             p-1
                             border-0
@@ -148,6 +149,7 @@ const Modal: React.FC<ModalProps> = ({
                             absolute
                             left-9
                             "
+                            onClick={handleClose}
                         >
                             <IoMdClose size = {18}/>    
                         </button>

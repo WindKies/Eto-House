@@ -47,7 +47,7 @@ export const categories = [
         description: 'Vị trí này có bể bơi!'
     },
     {
-        label: 'Đảo nhiệt đới',
+        label: 'Nhiệt đới',
         icon: GiIsland,
         description: 'Vị trí này nằm trên một hòn đảo!'
     },
@@ -118,6 +118,7 @@ const Categories = () => {
             <div
               className="
                 pt-4
+                
                 flex
                 flex-row
                 items-center

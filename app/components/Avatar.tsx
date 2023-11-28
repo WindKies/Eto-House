@@ -4,10 +4,12 @@ import Image from "next/image";
 
 interface AvatarProps {
     src: string | null | undefined;
+    style?: React.CSSProperties;
 };
 
 const Avatar: React.FC<AvatarProps> = ({
-    src
+    src,
+    style
 }) => {
     return (
         <Image
@@ -16,6 +18,8 @@ const Avatar: React.FC<AvatarProps> = ({
             width="30"
             alt="Avatar"
             src={src || "/images/avt0.png"}
+            style={style}
+        
         />
     );
 }

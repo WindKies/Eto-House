@@ -1,0 +1,18 @@
+@keyframes clipMe {
+    0%, 100% {
+      clip: rect(0px, 220px, 2px, 0px);
+    }
+    25% {
+      clip: rect(0px, 2px, 220px, 0px);
+    }
+    50% {
+      clip: rect(218px, 220px, 220px, 0px);
+    }
+    75% {
+      clip: rect(0px, 220px, 220px, 218px);
+    }
+  }
+  
+  .animation-clipMe {
+    animation: clipMe 8s linear infinite;
+  }
