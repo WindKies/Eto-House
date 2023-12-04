@@ -28,26 +28,50 @@ export default async function RootLayout({
   children: React.ReactNode
 }) {
   const currentUser = await getCurrentUser();
+  const isAdmin = 1; 
   return (
     <html lang="en">
-      <body className={font.className}>
-        <ClientOnly>
-          <ToasterProvider/>
-          <SearchModal/>
-          <RentModal/>
-          <LoginModal/>
-          <RegisterModal/>
-          <Navbar currentUser={currentUser} />
-          
-        </ClientOnly>
-        <div className='pb-20 pt-28'>
-          {children}
-        </div>
-        <ClientOnly>
-          <Footer/>
-        </ClientOnly>
-        
-      </body>
+      
+      {isAdmin === 1 ? (
+              <body className={font.className}>
+                 <ClientOnly>
+                   <ToasterProvider/>
+                   <SearchModal/>
+                   <RentModal/>
+                   <LoginModal/>
+                   <RegisterModal/>
+                   <Navbar currentUser={currentUser} />
+                   
+                 </ClientOnly>
+                 <div className='pb-20 pt-28'>
+                   {children}
+                 </div>
+                 <ClientOnly>
+                   <Footer/>
+                 </ClientOnly>
+                 
+              </body>
+          ) : (
+            <body className={font.className}>
+            <ClientOnly>
+              <ToasterProvider/>
+              <SearchModal/>
+              <RentModal/>
+              <LoginModal/>
+              <RegisterModal/>
+              <Navbar currentUser={currentUser} />
+              
+            </ClientOnly>
+            <div className='pb-20 pt-28'>
+              {children}
+            </div>
+            <ClientOnly>
+              <Footer/>
+            </ClientOnly>
+            
+          </body>
+          )}
+
     </html>
   )
 }

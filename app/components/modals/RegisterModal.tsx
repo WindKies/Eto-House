@@ -139,7 +139,7 @@ const RegisterModal = () => {
            disabled={isLoading}
            isOpen={registerModal.isOpen}
            title="Đăng ký"
-           actionLabel="Continue"
+           actionLabel="Tiếp tục"
            onClose={registerModal.onClose}
            onSubmit={handleSubmit(onSubmit)}
            body={bodyContent}
